@@ -1,0 +1,46 @@
+syntax = "proto3";
+
+service groceriesService{
+    rpc createItem(Item) returns (Item);
+    rpc createCategory (Category) returns (Category);
+
+    rpc getAllItems (Empty) returns (Items);
+    rpc getAllCategories (Empty) returns (Categories);
+
+    rpc editItem (Item) returns (Item);
+    rpc editCategory (Category) returns (Category);
+
+    rpc deleteItem (Item) returns(Empty);
+    rpc deleteCategory (Category) returns (Empty);
+
+    rpc getItem (Item) returns (Item);
+    rpc getCategory (Category) returns (Category);
+    rpc getItemsSortedByCategory (Category) returns (AllItemsInCategory);
+
+}
+
+message Item{
+    int32 id = 1;
+    string name = 2; 
+    int32 categoryID = 3;
+}
+
+message Category{
+    int32 id = 1;
+    string name = 2;
+}
+
+message Items{
+    repeated Item items = 1;
+}
+
+message Categories{
+    repeated Category categories = 1;
+}
+
+message AllItemsInCategory{
+    int32 categoryID = 3;
+    repeated Item items = 1;
+}
+
+message Empty{}
